@@ -1,14 +1,258 @@
-lorem {
-  color: blue;
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", sans-serif;
 }
-.ENTER {
-  background-color: brown(350, 50, 250);
-  color: black;
-  font-weight: 1000;
-  font-size: larger;
-  font-family: Arial, Helvetica, sans-serif;
-  border-radius: 6px;
-  border-color: blue;
-  display: block;
+
+/* BODY */
+body {
+  background: linear-gradient(180deg, #fff8d6, #fff);
+  color: #333;
+}
+
+/* NAVIGATION */
+header {
+  background: #ffeb70;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav {
+  max-width: 1200px;
   margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.paw {
+  color: #ff9800;
+}
+
+.riends {
+  color: #6a5cff;
+}
+
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+}
+
+.nav-links a:hover {
+  color: #ff9800;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+}
+
+.hero-content p {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(255, 152, 0, 0.3);
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, #ff9800, #ffd54f);
+  color: #000;
+}
+
+.btn {
+  background: #fff;
+  border: 2px dashed #ff9800;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+}
+
+/* SECTIONS */
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 4rem 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.3rem;
+  color: #ff9800;
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 25px;
+  padding: 1.8rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.card h3 {
+  color: #6a5cff;
+  margin-bottom: 0.5rem;
+}
+
+/* FOOTER */
+footer {
+  background: #ffeb70;
+  text-align: center;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+/* OUR PAW COMMUNITY IMAGES */
+.community-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.community-images {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.community-images img {
+  width: 260px; /* SAME WIDTH */
+  height: 260px; /* SAME HEIGHT */
+  object-fit: cover; /* CROPS PROPERLY */
+  border-radius: 25px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.community-images img:hover {
+  transform: translateY(-6px);
+}
+/* About PAWriends Images */
+.about-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.about-images img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.about-images img:hover {
+  transform: translateY(-5px);
+}
+/* SERVICES BUTTONS - FIXED PAW AND TEXT */
+.service-btn {
+  margin-top: 1.2rem;
+  padding: 0.9rem 2rem 0.9rem 3rem; /* extra left padding for paw */
+  border-radius: 35px; /* pill shape */
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #ffeb70, #ff9800, #ffd54f);
+  color: #222;
+  box-shadow: 0 6px 15px rgba(255, 152, 0, 0.35);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-btn::before {
+  content: "🐾";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+.service-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(255, 152, 0, 0.5);
+  background: linear-gradient(135deg, #ffd54f, #ff9800, #ffeb70);
 }
