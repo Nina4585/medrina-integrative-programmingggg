@@ -10,8 +10,8 @@ PAWriends combines technology and compassion to create meaningful
 connections.
 
 🔹 Technologies Used: 
-HTML5, 
-CSS3
+HTML, 
+CSS
 
 🔹 Features: 
 Responsive layout, 
@@ -25,6 +25,7 @@ I used ChatGPT to generate my ideas for the CSS layout designs. All code was rev
 
 🔹 Learning Reflection (Short): 
 I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, and visually appealing elements that match a theme. The most challenging part was aligning images and buttons properly while keeping the design aesthetic and responsive for different screen sizes.
+
 
 
 
