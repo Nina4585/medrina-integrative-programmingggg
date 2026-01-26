@@ -26,6 +26,17 @@ I used ChatGPT to generate my ideas for the CSS layout designs. All code was rev
 🔹 Learning Reflection (Short): 
 I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, and visually appealing elements that match a theme. The most challenging part was aligning images and buttons properly while keeping the design aesthetic and responsive for different screen sizes.
 
+🔹 Pages Added
+login.html – login UI page
+signup.html - signup UI page
+
+🔹 New Features 
+Multi-page navigation (Landing → Login → Signup)
+Consistent UI styling across pages
+
+🔹AI Assistance Disclosure 
+Ai modification in creating the login and signup page and connecting each page. 
+
 
 
 
