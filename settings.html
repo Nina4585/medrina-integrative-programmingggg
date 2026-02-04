@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PAWriends | Account Settings</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* --- LAYOUT GRID --- */
+      .settings-layout {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* --- SIDEBAR --- */
+      .settings-sidebar {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        height: fit-content;
+      }
+
+      .sidebar-item {
+        display: block;
+        padding: 0.8rem 1rem;
+        color: #4b5563;
+        text-decoration: none;
+        border-radius: 12px; /* Softer tabs */
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: 2px solid transparent; /* Prevents jumping on hover */
+      }
+
+      .sidebar-item.active {
+        background: #fff7ed;
+        color: var(--primary);
+        font-weight: 700;
+        border-color: #ffedd5;
+      }
+
+      .sidebar-item:hover:not(.active) {
+        background: #f9fafb;
+        color: var(--dark);
+      }
+
+      /* --- MAIN CONTENT CARD --- */
+      .settings-content {
+        background: white;
+        border-radius: 20px; /* More rounded */
+        padding: 3rem;
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+      }
+
+      .form-section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #f3f4f6; /* Thicker divider */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      /* --- UNIQUE INPUT STYLES ("The Squares") --- */
+
+      /* 1. Base State: Looks "pressed in" */
+      input,
+      select {
+        width: 100%;
+        padding: 1rem 1.2rem; /* Chunky padding */
+        background-color: #f8fafc; /* Very light cool grey */
+        border: 2px solid #eef2f6; /* Thick subtle border */
+        border-radius: 14px; /* Distinctive soft shape */
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--dark);
+        transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02); /* Subtle inner shadow */
+      }
+
+      /* 2. Hover State: Slight change */
+      input:hover,
+      select:hover {
+        background-color: #fff;
+        border-color: #cbd5e1;
+      }
+
+      /* 3. Focus/Active State: "Pops" out */
+      input:focus,
+      select:focus {
+        outline: none;
+        background-color: #fff;
+        border-color: var(--primary);
+        box-shadow:
+          0 0 0 4px rgba(255, 159, 28, 0.1),
+          /* Glow ring */ 0 4px 12px rgba(0, 0, 0, 0.05); /* Drop shadow */
+        transform: translateY(-2px) scale(1.01); /* Moves up and grows slightly */
+      }
+
+      /* Label Styling */
+      label {
+        margin-bottom: 0.6rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #9ca3af;
+      }
+
+      /* Helper Text */
+      small {
+        margin-top: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: 2px solid #e5e7eb;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .settings-layout {
+          grid-template-columns: 1fr;
+        }
+        .settings-sidebar {
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 1rem;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <span class="paw">PAW</span><span class="riends">riends</span>
+        </div>
+        <div class="nav-links">
+          <a href="profile.html">Back to Profile</a>
+          <a href="login.html" style="color: #ef4444">Sign Out</a>
+        </div>
+      </nav>
+    </header>
+
+    <section>
+      <div style="max-width: 1000px; margin: 0 auto 2rem">
+        <h2
+          class="section-title"
+          style="text-align: left; margin-bottom: 0.5rem"
+        >
+          Settings
+        </h2>
+        <p style="color: #6b7280">
+          Manage your account preferences and security.
+        </p>
+      </div>
+
+      <div class="settings-layout">
+        <aside class="settings-sidebar">
+          <div class="sidebar-item active">General</div>
+          <div class="sidebar-item">Security</div>
+          <div class="sidebar-item">
+            Billing
+            <span
+              style="
+                font-size: 0.7rem;
+                background: #eee;
+                padding: 2px 6px;
+                border-radius: 4px;
+                margin-left: 5px;
+              "
+              >SOON</span
+            >
+          </div>
+          <div class="sidebar-item">Notifications</div>
+          <div
+            style="
+              margin-top: 2rem;
+              border-top: 1px solid #eee;
+              padding-top: 1rem;
+            "
+          >
+            <a
+              href="login.html"
+              style="
+                color: #ef4444;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                padding-left: 1rem;
+              "
+              >Delete Account</a
+            >
+          </div>
+        </aside>
+
+        <main class="settings-content">
+          <form action="profile.html">
+            <div class="form-section-title">
+              <span>👤</span> Personal Information
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+              "
+            >
+              <div
+                class="avatar-large"
+                style="
+                  width: 70px;
+                  height: 70px;
+                  font-size: 1.5rem;
+                  margin: 0;
+                  box-shadow: none;
+                "
+              >
+                FM
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn"
+                  style="
+                    padding: 0.5rem 1rem;
+                    font-size: 0.85rem;
+                    border-radius: 10px;
+                  "
+                >
+                  Change Avatar
+                </button>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Display Name</label>
+                <input
+                  type="text"
+                  value="Finn Medrina"
+                  style="font-weight: 700; color: var(--primary)"
+                />
+              </div>
+              <div class="form-group">
+                <label>Location</label>
+                <input type="text" value="Cebu City, Philippines" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" value="finn.paw@pawriends.com" />
+              <small>Managed by PAWriends Identity Provider</small>
+            </div>
+
+            <div class="form-section-title" style="margin-top: 3rem">
+              <span>🔒</span> Security & Login
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="password" placeholder="••••••••" />
+              </div>
+              <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="••••••••" />
+              </div>
+            </div>
+            <small style="margin-bottom: 1.5rem"
+              >Protected by Argon2id hashing algorithms.</small
+            >
+
+            <div class="form-section-title" style="margin-top: 3rem">
+              <span>🎨</span> App Preferences
+            </div>
+
+            <div class="form-group">
+              <label>Theme Preference</label>
+              <select>
+                <option value="light">Light Mode (Default)</option>
+                <option value="dark">Dark Mode</option>
+                <option value="system">Sync with System</option>
+              </select>
+            </div>
+
+            <div
+              style="
+                margin-top: 3rem;
+                display: flex;
+                justify-content: flex-end;
+                gap: 1rem;
+                border-top: 1px solid #f3f4f6;
+                padding-top: 2rem;
+              "
+            >
+              <a
+                href="profile.html"
+                class="btn"
+                style="border: none; background: transparent"
+                >Cancel</a
+              >
+              <button
+                type="submit"
+                class="btn primary"
+                style="padding: 0.8rem 2.5rem; border-radius: 12px"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 PAWriends Inc.</p>
+    </footer>
+  </body>
+</html>

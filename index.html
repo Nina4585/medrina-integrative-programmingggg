@@ -5,26 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAWriends | Futuristic Pet Community</title>
     <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* User Actions Container */
+      .user-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-left: auto; /* Pushes it to the right */
+      }
+
+      /* Settings Icon */
+      .icon-link {
+        text-decoration: none;
+        font-size: 1.3rem;
+        transition: transform 0.3s ease;
+      }
+      .icon-link:hover {
+        transform: rotate(90deg);
+      }
+
+      /* Profile Button (Pill Shape) */
+      .btn-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        background: #fff;
+        padding: 0.3rem 1rem 0.3rem 0.3rem;
+        border-radius: 30px;
+        border: 2px solid #eee;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .btn-profile:hover {
+        border-color: #ff9800;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 152, 0, 0.2);
+      }
+
+      /* Small Avatar Circle */
+      .avatar-small {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #ff9800, #ffd54f);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      /* Responsive Adjustment */
+      @media (max-width: 768px) {
+        .user-actions {
+          display: none;
+        } /* Hide on mobile for simplicity */
+      }
+    </style>
   </head>
   <body>
-    <!-- NAVIGATION -->
     <header>
       <nav>
         <div class="logo">
           <span class="paw">PAW</span><span class="riends">riends</span>
         </div>
+
         <div class="nav-links">
           <a href="#">Home</a>
-          <a href="#about">About Us</a>
+          <a href="#about">About</a>
           <a href="#dogs">Dogs</a>
           <a href="#services">Services</a>
           <a href="#community">Community</a>
-          <a href="login.html">Login</a>
+        </div>
+
+        <div class="user-actions">
+          <a href="settings.html" class="icon-link" title="Settings">⚙️</a>
+          <a href="profile.html" class="btn-profile">
+            <span class="avatar-small">FM</span> My Profile
+          </a>
         </div>
       </nav>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
       <div class="hero-content">
         <h1><span class="paw">PAW</span><span class="riends">riends</span></h1>
@@ -45,7 +114,6 @@
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section id="about">
       <h2 class="section-title">About PAWriends</h2>
       <p class="section-desc">
@@ -85,7 +153,6 @@
       </p>
     </section>
 
-    <!-- DOGS SECTION -->
     <section id="dogs">
       <h2 class="section-title">Meet Our Dogs</h2>
       <p class="section-desc">
@@ -122,7 +189,6 @@
       </div>
     </section>
 
-    <!-- SERVICES SECTION -->
     <section id="services">
       <h2 class="section-title">Our Services</h2>
       <p class="section-desc">
@@ -134,22 +200,21 @@
           <p>
             Create digital identities showcasing your dog’s journey and growth.
           </p>
-          <button class="service-btn">Learn More 🐾</button>
+          <button class="service-btn">Learn More</button>
         </div>
         <div class="card">
           <h3>📍 Local Playdates</h3>
           <p>Connect with nearby dog owners for walks and play sessions.</p>
-          <button class="service-btn">Learn More 🐾</button>
+          <button class="service-btn">Learn More</button>
         </div>
         <div class="card">
           <h3>🤖 AI Pet Insights</h3>
           <p>Get futuristic tips for health, training, and happiness.</p>
-          <button class="service-btn">Learn More 🐾</button>
+          <button class="service-btn">Learn More</button>
         </div>
       </div>
     </section>
 
-    <!-- COMMUNITY SECTION -->
     <section id="community">
       <h2 class="section-title">Our 🐾 PAW Community</h2>
       <p class="section-desc">
@@ -183,9 +248,8 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-      <p>@ PAWriends | Designed by Finn and Niña Medrina</p>
+      <p>&copy; PAWriends | Designed by Finn and Niña Medrina</p>
     </footer>
   </body>
 </html>
