@@ -77,9 +77,6 @@
         gap: 1.5rem;
       }
 
-      /* --- UNIQUE INPUT STYLES ("The Squares") --- */
-
-      /* 1. Base State: Looks "pressed in" */
       input,
       select {
         width: 100%;
@@ -94,14 +91,12 @@
         box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02); /* Subtle inner shadow */
       }
 
-      /* 2. Hover State: Slight change */
       input:hover,
       select:hover {
         background-color: #fff;
         border-color: #cbd5e1;
       }
 
-      /* 3. Focus/Active State: "Pops" out */
       input:focus,
       select:focus {
         outline: none;
@@ -113,7 +108,6 @@
         transform: translateY(-2px) scale(1.01); /* Moves up and grows slightly */
       }
 
-      /* Label Styling */
       label {
         margin-bottom: 0.6rem;
         font-size: 0.85rem;
@@ -122,14 +116,12 @@
         color: #9ca3af;
       }
 
-      /* Helper Text */
       small {
         margin-top: 0.5rem;
         padding-left: 0.5rem;
         border-left: 2px solid #e5e7eb;
       }
 
-      /* RESPONSIVE */
       @media (max-width: 768px) {
         .settings-layout {
           grid-template-columns: 1fr;
@@ -146,6 +138,7 @@
       }
     </style>
   </head>
+  <script src="script.js"></script>
   <body>
     <header>
       <nav>
