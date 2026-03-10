@@ -4,78 +4,156 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | PAWriends</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ffd54f, #ffc107);
+      }
+
+      .login-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        width: 350px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #ffb300;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 25px;
+      }
+
+      .input-group {
+        margin-bottom: 18px;
+        text-align: left;
+      }
+
+      .input-group label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #444;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ffd54f, #ffc107);
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .links {
+        margin-top: 18px;
+        font-size: 13px;
+      }
+
+      .links a {
+        text-decoration: none;
+        color: #ffb300;
+        font-weight: 600;
+      }
+    </style>
   </head>
+
   <body>
-    <header>
-      <nav>
-        <div class="logo">
-          <span class="paw">PAW</span><span class="riends">riends</span>
+    <div class="login-container">
+      <div class="logo">PAWriends 🐾</div>
+      <div class="subtitle">Login to your account</div>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" required />
         </div>
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="signup.html">Sign Up</a>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" required />
         </div>
-      </nav>
-    </header>
 
-    <section class="hero">
-      <div
-        class="hero-content"
-        style="max-width: 400px; margin: auto; text-align: center"
-      >
-        <h1>Login</h1>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
 
-        <!-- ✅ Updated Form -->
-        <form id="loginForm">
-          <input
-            type="email"
-            id="loginEmail"
-            placeholder="Email"
-            required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
-          />
-
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="Password"
-            required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
-          />
-
-          <!-- ✅ Changed type to submit -->
-          <button
-            type="submit"
-            class="btn primary"
-            style="width: 100%; margin-top: 1rem"
-          >
-            Login
-          </button>
-        </form>
-
-        <p style="margin-top: 1rem">
-          Don't have an account? <a href="signup.html">Sign up</a>
-        </p>
-        <p style="margin-top: 0.5rem">
-          <a href="index.html">Back to Home</a>
-        </p>
+      <div class="links">
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        <p><a href="index.html">Back to Home</a></p>
       </div>
-    </section>
+    </div>
 
-    <!-- ✅ Connect JavaScript -->
-    <script src="script.js"></script>
+    <script>
+      const loginForm = document.getElementById("loginForm");
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+
+        // 🔐 ADMIN LOGIN (password not required)
+        if (email === "admin@gmail.com") {
+          const adminUser = {
+            name: "Admin",
+            email: "admin@gmail.com",
+            role: "admin",
+          };
+
+          localStorage.setItem("pawCurrentUser", JSON.stringify(adminUser));
+          window.location.href = "admin.html";
+          return;
+        }
+
+        // 👤 NORMAL USER LOGIN
+        let users = JSON.parse(localStorage.getItem("pawUsers")) || [];
+
+        const foundUser = users.find(
+          (u) => u.email === email && u.password === password,
+        );
+
+        if (!foundUser) {
+          alert("❌ Invalid email or password");
+          return;
+        }
+
+        // Save logged user
+        localStorage.setItem("pawCurrentUser", JSON.stringify(foundUser));
+
+        // Redirect normal users
+        window.location.href = "index.html";
+      });
+    </script>
   </body>
 </html>

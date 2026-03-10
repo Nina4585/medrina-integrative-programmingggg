@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PAWriends | Manage Users</title>
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #ffd54f, #ffc107);
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background: #fff;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo {
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: #f57f17;
+      }
+
+      nav a {
+        margin-left: 1.5rem;
+        color: #555;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      nav a.active {
+        color: #f57f17;
+      }
+
+      section {
+        padding: 2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        color: #f57f17;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-desc {
+        margin-bottom: 2rem;
+        color: #555;
+      }
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        flex: 1;
+        min-width: 300px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      th {
+        color: #f57f17;
+      }
+
+      .btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background: #fbc02d;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        background: #f9a825;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">PAWriends Admin</div>
+
+      <nav>
+        <a href="admin.html">Dashboard</a>
+        <a href="manage-users.html" class="active">Manage Users</a>
+        <a href="index.html">Logout</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2 class="section-title">Manage Users</h2>
+      <p class="section-desc">Add, view, and delete users in the system.</p>
+
+      <div class="cards">
+        <!-- USERS TABLE -->
+        <div class="card">
+          <table id="usersTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <!-- ADD USER -->
+        <div class="card">
+          <h3>Add New User</h3>
+
+          <form id="addUserForm">
+            <input type="text" id="userName" placeholder="Name" required />
+
+            <input type="email" id="userEmail" placeholder="Email" required />
+
+            <select id="userRole">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit" class="btn">Add User</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>&copy; 2026 PAWriends | Admin Panel</footer>
+
+    <script>
+      // ADMIN ACCESS PROTECTION
+      const loggedInUser =
+        JSON.parse(localStorage.getItem("pawCurrentUser")) || {};
+
+      if (
+        !loggedInUser.email ||
+        loggedInUser.email !== "admin@gmail.com" ||
+        loggedInUser.role !== "admin"
+      ) {
+        alert("❌ Access denied. Admins only.");
+        window.location.href = "login.html";
+      }
+
+      // LOAD USERS
+      let users = JSON.parse(localStorage.getItem("pawUsers")) || [];
+
+      const usersTable = document.querySelector("#usersTable tbody");
+
+      function renderUsers() {
+        usersTable.innerHTML = "";
+
+        users.forEach((user, index) => {
+          const row = usersTable.insertRow();
+
+          row.innerHTML = `
+<td>${index + 1}</td>
+<td>${user.name}</td>
+<td>${user.email}</td>
+<td>${user.role || "user"}</td>
+<td>
+<button onclick="deleteUser(${index})" class="btn">Delete</button>
+</td>
+`;
+        });
+
+        localStorage.setItem("pawUsers", JSON.stringify(users));
+      }
+
+      // DELETE USER
+      function deleteUser(index) {
+        if (confirm("Delete this user?")) {
+          users.splice(index, 1);
+
+          renderUsers();
+        }
+      }
+
+      // ADD USER
+      document
+        .getElementById("addUserForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("userName").value.trim();
+
+          const email = document.getElementById("userEmail").value.trim();
+
+          const role = document.getElementById("userRole").value;
+
+          users.push({
+            name,
+            email,
+            role,
+          });
+
+          this.reset();
+
+          renderUsers();
+        });
+
+      renderUsers();
+    </script>
+  </body>
+</html>

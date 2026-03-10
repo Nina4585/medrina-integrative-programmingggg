@@ -66,14 +66,15 @@ I used ChatGPT to generate my ideas for the CSS layout designs. All code was rev
 🔹 Learning Reflection (Short) Answer briefly:
 I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, and visually appealing elements that match a theme. The most challenging part was aligning images and buttons properly while keeping the design aesthetic and responsive for different screen sizes.
 
-ACTIVITY 2
-=======
-🔹 Learning Reflection (Short) Answer briefly: 
-I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, and visually appealing elements that match a theme. The most challenging part was aligning images and buttons properly while keeping the design aesthetic and responsive for different screen sizes. 
+# ACTIVITY 2
+
+🔹 Learning Reflection (Short) Answer briefly:
+I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, and visually appealing elements that match a theme. The most challenging part was aligning images and buttons properly while keeping the design aesthetic and responsive for different screen sizes.
 
 ======
 ACIVITY 2
->>>>>>> 3d26cf50a83f92afa1caa69493f7c9f06d7dc3fb
+
+> > > > > > > 3d26cf50a83f92afa1caa69493f7c9f06d7dc3fb
 
 🔹 Activity name:  
 Login and Signup page linking
@@ -133,36 +134,24 @@ Add Validation Rule
 
 If YES, specify: I used ChatGPT to generate my ideas for the validation logic, ensuring all functionalities remain intact. All code was reviewed and modified by me .
 
-🔹 Learning Reflection (Short) Answer briefly: I learned how to verify validation, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.
-=======
-🔹 Learning Reflection (Short) Answer briefly: 
-I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, visually appealing elements that match a theme, and a linked login and sign up pages. The most challenging part was aligning with the whole idea on how to make the design responsive and connecting each pages. 
+# 🔹 Learning Reflection (Short) Answer briefly: I learned how to verify validation, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.
 
->>>>>>> PROFILE and SETTINGS
+---
 
-🔹 Activity name:  
-PROFILE  & SETTINGS PAGE
+🔹 Activity 5:
+Create Admin Pages
 
-🔹 Description Explain: 
-Created another page for profile and settings page connecting to the current index.html and style.css
+🔹 Description Explain: Extend your existing project by implementing basic admin pages that allow an administrator to manage simple data within the system.
 
-🔹 Technologies Used Example: 
-HTML5, CSS3 
+🔹 Technologies Used Example: HTML5, CSS3, JAVA
 
-🔹 Features List at least 3 features of your landing page. 
-Responsive layout, Call-to-action button, Clean/ Playful UI design, Multi-page navigation (Landing → Login → Signup), Consistent UI styling across pages
+🔹 Features List at least 3 features of your landing page: Responsive layout, Call-to-action button, Clean/ Playful UI design, Multi-page navigation (Landing → Login → Signup), Consistent UI styling across pages, VALIDATION LOGIC, Admin-side functionality - - Admin Dashboard
 
-🔹 AI Assistance Disclosure (Required)
-Answer honestly: Yes 
+- Manage Users page
+- Add User form with validations
 
-If YES, specify:
-I used ChatGPT to generate my ideas for the Profile and Settings page, with its design and for a responsive layout. All code was reviewed and modified by me . 
+🔹 AI Assistance Disclosure (Required) Answer honestly: Yes
 
-🔹 Learning Reflection (Short) Answer briefly: 
-I learned how to design and develop a complete landing page using HTML and CSS, including responsive layouts, interactive buttons, visually appealing elements that match a theme, and a linked login and sign up pages and added a profile and settings page. The most challenging part was aligning with the whole idea on how to make the design responsive and connecting each pages. 
+If YES, specify: I used ChatGPT to generate my ideas to add a admin-side functionality, ensuring all functionalities remains intact. All code was reviewed and modified by me .
 
-
-
-
-
->>>>>>> 3d26cf50a83f92afa1caa69493f7c9f06d7dc3fb
+# 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a admin-side functionality, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.

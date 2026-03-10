@@ -4,108 +4,153 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up | PAWriends</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ffd54f, #ffc107);
+      }
+      .signup-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        width: 350px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+      .signup-container h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 25px;
+        color: #ffb300;
+      }
+      form {
+        text-align: left;
+      }
+      .input-group {
+        margin-bottom: 18px;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 6px;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+      input:focus {
+        outline: none;
+        border-color: #ffc107;
+        box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ffd54f, #ffc107);
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+      .auth-links {
+        margin-top: 18px;
+        font-size: 13px;
+        text-align: center;
+      }
+      .auth-links a {
+        color: #ffb300;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .auth-links a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
-    <!-- NAVIGATION -->
-    <header>
-      <nav>
-        <div class="logo">
-          <span class="paw">PAW</span><span class="riends">riends</span>
+    <div class="signup-container">
+      <h1>Join PAWriends 🐾</h1>
+
+      <form id="signupForm">
+        <div class="input-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Full Name" required />
         </div>
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="login.html">Login</a>
-        </div>
-      </nav>
-    </header>
-
-    <!-- HERO / FORM SECTION -->
-    <section class="hero">
-      <div
-        class="hero-content"
-        style="max-width: 400px; margin: auto; text-align: center"
-      >
-        <h1>Sign Up</h1>
-
-        <!-- ✅ Updated Form -->
-        <form id="signupForm">
-          <input
-            type="text"
-            id="signupName"
-            placeholder="Full Name"
-            required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
-          />
-
+        <div class="input-group">
+          <label for="signupEmail">Email Address</label>
           <input
             type="email"
             id="signupEmail"
-            placeholder="Email"
+            placeholder="Email Address"
             required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
           />
-
+        </div>
+        <div class="input-group">
+          <label for="signupPassword">Password</label>
           <input
             type="password"
             id="signupPassword"
             placeholder="Password"
             required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
           />
+        </div>
+        <button type="submit">Create Account</button>
+      </form>
 
-          <input
-            type="password"
-            id="signupConfirmPassword"
-            placeholder="Confirm Password"
-            required
-            style="
-              width: 100%;
-              padding: 0.8rem;
-              margin: 0.5rem 0;
-              border-radius: 10px;
-              border: 1px solid #ccc;
-            "
-          />
-
-          <!-- ✅ Changed type to submit -->
-          <button
-            type="submit"
-            class="btn primary"
-            style="width: 100%; margin-top: 1rem"
-          >
-            Create Account
-          </button>
-        </form>
-
-        <p style="margin-top: 1rem">
-          Already have an account? <a href="login.html">Login</a>
-        </p>
-        <p style="margin-top: 0.5rem">
-          <a href="index.html">Back to Home</a>
-        </p>
+      <div class="auth-links">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+        <p><a href="index.html">Back to Home</a></p>
       </div>
-    </section>
+    </div>
 
-    <!-- ✅ Connect JavaScript -->
-    <script src="script.js"></script>
+    <script>
+      const form = document.getElementById("signupForm");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("signupName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value.trim();
+
+        // Load existing users from localStorage
+        let users = JSON.parse(localStorage.getItem("pawUsers")) || [];
+
+        // Save new user (anyone except admin)
+        users.push({ name, email, password, role: "user" });
+
+        localStorage.setItem("pawUsers", JSON.stringify(users));
+
+        alert("✅ Sign up successful! Redirecting to login page...");
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
