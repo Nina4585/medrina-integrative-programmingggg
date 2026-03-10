@@ -123,21 +123,18 @@
         const email = document.getElementById("loginEmail").value.trim();
         const password = document.getElementById("loginPassword").value.trim();
 
-        // 🔐 ADMIN LOGIN (password not required)
-        if (email === "admin@gmail.com") {
-          const adminUser = {
+        let users = JSON.parse(localStorage.getItem("pawUsers")) || [];
+
+        // Ensure admin account always exists
+        if (!users.some((u) => u.email === "admin@gmail.com")) {
+          users.push({
             name: "Admin",
             email: "admin@gmail.com",
+            password: "admin123",
             role: "admin",
-          };
-
-          localStorage.setItem("pawCurrentUser", JSON.stringify(adminUser));
-          window.location.href = "admin.html";
-          return;
+          });
+          localStorage.setItem("pawUsers", JSON.stringify(users));
         }
-
-        // 👤 NORMAL USER LOGIN
-        let users = JSON.parse(localStorage.getItem("pawUsers")) || [];
 
         const foundUser = users.find(
           (u) => u.email === email && u.password === password,
@@ -151,8 +148,15 @@
         // Save logged user
         localStorage.setItem("pawCurrentUser", JSON.stringify(foundUser));
 
-        // Redirect normal users
-        window.location.href = "index.html";
+        // Redirect based on user email and role
+        if (
+          foundUser.email === "admin@gmail.com" &&
+          foundUser.role === "admin"
+        ) {
+          window.location.href = "admin.html"; // Admin dashboard
+        } else {
+          window.location.href = "index.html"; // Main homepage / facade
+        }
       });
     </script>
   </body>
