@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dog Community Explorer</title>
+    <style>
+      :root {
+        /* Yellow & Amber Theme Palette */
+        --primary-yellow: #f1c40f; /* Bright Yellow */
+        --dark-amber: #f39c12; /* Deep Amber */
+        --light-cream: #fef9e7; /* Very Light Yellow Background */
+        --text-dark: #4a4a4a;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background-color: var(--light-cream);
+        margin: 0;
+        padding: 20px;
+        color: var(--text-dark);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      /* Hero Section */
+      .header-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-yellow),
+          var(--dark-amber)
+        );
+        color: #333; /* Darker text for contrast on yellow */
+        padding: 50px 20px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 6px 20px rgba(243, 156, 18, 0.2);
+      }
+
+      .header-section h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+      }
+
+      /* Search Layout */
+      .search-area {
+        background: var(--white);
+        padding: 25px;
+        border-radius: 50px; /* Rounded pill shape */
+        display: inline-flex;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-top: -45px;
+        border: 3px solid var(--white);
+      }
+
+      input[type="text"] {
+        padding: 12px 20px;
+        width: 300px;
+        border: 2px solid #eee;
+        border-radius: 30px;
+        outline: none;
+        font-size: 1rem;
+      }
+
+      input[type="text"]:focus {
+        border-color: var(--dark-amber);
+      }
+
+      button {
+        padding: 12px 30px;
+        background-color: var(--dark-amber);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition:
+          transform 0.2s,
+          background 0.3s;
+      }
+
+      button:hover {
+        background-color: #d35400;
+        transform: scale(1.05);
+      }
+
+      /* Results Grid */
+      #resultsArea {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .dog-card {
+        background: var(--white);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f9e79f;
+        transition: all 0.3s ease;
+      }
+
+      .dog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(243, 156, 18, 0.2);
+      }
+
+      .dog-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 5px solid var(--primary-yellow);
+      }
+
+      .dog-info {
+        padding: 20px;
+      }
+
+      .dog-info h3 {
+        margin: 0;
+        color: #b7950b;
+        text-transform: capitalize;
+        font-size: 1.4rem;
+      }
+
+      .badge {
+        display: inline-block;
+        background: var(--light-cream);
+        color: var(--dark-amber);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .error-msg {
+        grid-column: 1 / -1;
+        background: #fdf2e9;
+        color: #a04000;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px dashed var(--dark-amber);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-section">
+        <h1>🐶 The Golden Community</h1>
+        <p>Finding your favorite dog breeds, one search at a time.</p>
+      </div>
+
+      <div class="search-area">
+        <input
+          type="text"
+          id="breedInput"
+          placeholder="Enter a breed (e.g. Beagle, Akita)"
+        />
+        <button id="searchBtn">Find My Dog</button>
+      </div>
+
+      <div id="resultsArea">
+        <p style="grid-column: 1/-1; opacity: 0.6">
+          The kennel is empty... search for a breed to fill it!
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

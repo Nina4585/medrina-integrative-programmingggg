@@ -141,3 +141,60 @@ function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 }
+
+/* ---------------- DOG API INTEGRATION ---------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBtn = document.querySelector("#searchBtn");
+  const breedInput = document.querySelector("#breedSearchInput");
+  const resultsArea = document.querySelector("#apiResults");
+
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      const breedName = breedInput.value.trim().toLowerCase();
+
+      // 1. Validation: Check if input is empty
+      if (!breedName) {
+        resultsArea.innerHTML =
+          "<p style='grid-column:1/-1; color:red;'>Please enter a breed!</p>";
+        return;
+      }
+
+      // 2. Loading State
+      resultsArea.innerHTML =
+        "<p style='grid-column:1/-1;'>Fetching dogs from 2026 database...</p>";
+
+      // 3. API Fetch with 2026.json label
+      fetch(
+        `https://dog.ceo/api/breed/${breedName}/images/random/3?v=2026.json`,
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Breed not found");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success! 2026 JSON Data received:", data);
+
+          resultsArea.innerHTML = ""; // Clear the loading text
+
+          // 4. Loop through the images and display them
+          data.message.forEach((imgUrl) => {
+            resultsArea.innerHTML += `
+                <div class="api-card">
+                    <img src="${imgUrl}" alt="Dog">
+                    <div class="api-card-info">
+                        <h3>${breedName}</h3>
+                        <p>Live API Result (2026)</p>
+                    </div>
+                </div>`;
+          });
+        })
+        .catch((error) => {
+          console.error("API Error:", error);
+          resultsArea.innerHTML =
+            "<p style='grid-column:1/-1; color:red;'>Breed not found. Try 'hound', 'pug', or 'poodle'.</p>";
+        });
+    }); // End of Event Listener
+  }
+});

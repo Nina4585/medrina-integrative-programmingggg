@@ -155,3 +155,26 @@ Create Admin Pages
 If YES, specify: I used ChatGPT to generate my ideas to add a admin-side functionality, ensuring all functionalities remains intact. All code was reviewed and modified by me .
 
 # 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a admin-side functionality, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.
+
+---
+
+🔹 Activity 6:
+Exploring API Integration in a Web Application
+
+🔹 Description Explain: Add a new page to your previous activity/project and use at least one public API in that page.
+
+🔹 Technologies Used Example: HTML5, CSS3, JAVA
+
+🔹 API used: BREED-TO-DATA API - retrieves live dog images from a global database and injects them directly into the website’s interface.
+
+🔹 Features List at least 3 features of your landing page: No Authentication (Keyless), Massive Image Database, JSON-Only Communication, CORS Support, Randomized Sampling, Granular Endpoints (Breed/Sub-breed)
+
+🔹 How to use the App: When a user types a breed name and clicks the search button, the API processes that request, identifies the matching breed in its remote server, and sends back a JSON package containing specific image URLs. JavaScript then interprets this data to dynamically generate "dog cards" on the page, allowing the app to display different breed variations without requiring to manually store or upload a single photo.
+
+🔹 Challenges Ecountered: I had difficulty integrating the API functionality into the system. Especially, when checking errors and fixing them.
+
+🔹 AI Assistance Disclosure (Required) Answer honestly: Yes
+
+If YES, specify: I used ChatGPT to generate my ideas to add a API PAGE, ensuring all functionalities remains intact. All code was reviewed and modified by me .
+
+# 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a API PAGE, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.

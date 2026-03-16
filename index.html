@@ -7,25 +7,103 @@
     <link rel="stylesheet" href="style.css" />
 
     <style>
-      /* User Actions Container */
+      /* --- API INTEGRATION STYLES (YELLOW THEME) --- */
+      :root {
+        --primary-yellow: #f1c40f;
+        --dark-amber: #f39c12;
+        --light-cream: #fef9e7;
+      }
+
+      #dogs {
+        background-color: var(--light-cream);
+        padding: 60px 20px;
+        border-radius: 50px 50px 0 0;
+      }
+
+      .api-search-container {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .search-box {
+        display: inline-flex;
+        gap: 10px;
+        background: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        border: 2px solid var(--primary-yellow);
+      }
+
+      .search-box input {
+        border: none;
+        outline: none;
+        padding: 10px;
+        width: 250px;
+        font-size: 1rem;
+      }
+
+      .search-box button {
+        background: var(--dark-amber);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .search-box button:hover {
+        background: #d35400;
+        transform: scale(1.05);
+      }
+
+      /* Grid for API results */
+      #apiResults {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .api-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        border-bottom: 4px solid var(--primary-yellow);
+        transition: 0.3s;
+      }
+
+      .api-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .api-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .api-card-info {
+        padding: 15px;
+        text-align: center;
+      }
+      .api-card-info h3 {
+        text-transform: capitalize;
+        color: var(--dark-amber);
+        margin: 5px 0;
+      }
+
+      /* User Actions & Navigation */
       .user-actions {
         display: flex;
         align-items: center;
         gap: 1.2rem;
-        margin-left: auto; /* Pushes it to the right */
+        margin-left: auto;
       }
-
-      /* Settings Icon */
-      .icon-link {
-        text-decoration: none;
-        font-size: 1.3rem;
-        transition: transform 0.3s ease;
-      }
-      .icon-link:hover {
-        transform: rotate(90deg);
-      }
-
-      /* Profile Button (Pill Shape) */
       .btn-profile {
         display: flex;
         align-items: center;
@@ -38,17 +116,7 @@
         color: #333;
         font-weight: 600;
         font-size: 0.9rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       }
-
-      .btn-profile:hover {
-        border-color: #ff9800;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(255, 152, 0, 0.2);
-      }
-
-      /* Small Avatar Circle */
       .avatar-small {
         width: 32px;
         height: 32px;
@@ -59,14 +127,6 @@
         justify-content: center;
         color: white;
         font-size: 0.8rem;
-        font-weight: bold;
-      }
-
-      /* Responsive Adjustment */
-      @media (max-width: 768px) {
-        .user-actions {
-          display: none;
-        } /* Hide on mobile for simplicity */
       }
     </style>
   </head>
@@ -80,7 +140,7 @@
         <div class="nav-links">
           <a href="#">Home</a>
           <a href="#about">About</a>
-          <a href="#dogs">Dogs</a>
+          <a href="#dogs">Dogs (API)</a>
           <a href="#services">Services</a>
           <a href="#community">Community</a>
         </div>
@@ -98,18 +158,17 @@
       <div class="hero-content">
         <h1><span class="paw">PAW</span><span class="riends">riends</span></h1>
         <p>
-          A lively community where dog lovers, dog owners, and adorable pets
-          connect, share moments, and grow together.
+          A lively community where dog lovers connect, share, and grow together.
         </p>
         <div class="hero-buttons">
           <a href="login.html" class="btn primary">Join the Pack</a>
-          <a href="#dogs" class="btn">Explore Dogs</a>
+          <a href="#dogs" class="btn">Search Breeds</a>
         </div>
       </div>
       <div class="hero-image">
         <img
           src="https://i.pinimg.com/1200x/d0/27/00/d0270046239581962b09e2ded021d300.jpg"
-          alt="Futuristic Dog Vinyl Art"
+          alt="Futuristic Dog Art"
         />
       </div>
     </section>
@@ -117,99 +176,55 @@
     <section id="about">
       <h2 class="section-title">About PAWriends</h2>
       <p class="section-desc">
-        PAWriends is a pet-friendly digital universe where dogs are celebrated
-        as family and communities are built through shared love for pets.
-        PAWriends combines technology and compassion to create meaningful
-        connections.
+        Celebrating dogs as family through technology and compassion.
       </p>
-
       <div class="about-images">
         <img
           src="https://i.pinimg.com/1200x/3c/0c/b3/3c0cb36e2665658102bee9a6596fbf56.jpg"
-          alt="Dog Image 1"
+          alt="Dog 1"
         />
         <img
           src="https://i.pinimg.com/736x/58/19/84/5819843e7bcee46cb6c0a555b86b6644.jpg"
-          alt="Dog Image 2"
-        />
-        <img
-          src="https://i.pinimg.com/736x/5f/d2/5d/5fd25d690ab5ad8376f938bc1e173978.jpg"
-          alt="Dog Image 3"
-        />
-        <img
-          src="https://i.pinimg.com/736x/36/26/73/3626733ac21741114d6e53cf8ae3c932.jpg"
-          alt="Dog Image 4"
-        />
-        <img
-          src="https://i.pinimg.com/736x/69/9c/fa/699cfad7f748e6e0c5da18c52b0c7da3.jpg"
-          alt="Dog Image 5"
+          alt="Dog 2"
         />
       </div>
-
-      <p class="section-desc">
-        Whether you own a playful puppy, a calm senior dog, or simply admire
-        dogs, PAWriends offers a safe and joyful space to connect, learn, and
-        grow together.
-      </p>
     </section>
 
     <section id="dogs">
       <h2 class="section-title">Meet Our Dogs</h2>
       <p class="section-desc">
-        From tiny fluffballs to energetic companions, PAWriends welcomes all
-        breeds and personalities.
+        Use our Live API to explore different breeds in the community!
       </p>
-      <div class="cards">
-        <div class="card">
-          <img
-            src="https://i.pinimg.com/736x/a4/2e/4c/a42e4c17d98fe0b23c34dfbe80c6a03c.jpg"
-            alt="Poodle Shih Tzu Dog"
+
+      <div class="api-search-container">
+        <div class="search-box">
+          <input
+            type="text"
+            id="breedSearchInput"
+            placeholder="Enter breed (e.g. Husky, Pug)"
           />
-          <h3>Poodle × Shih Tzu</h3>
-          <p>Smart, affectionate, and playful — perfect family companions.</p>
+          <button id="searchBtn">Find Pups</button>
         </div>
-        <div class="card">
-          <img
-            src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=800&q=80"
-            alt="Golden Retriever"
-          />
-          <h3>Golden Retriever</h3>
-          <p>Loyal, friendly, and known for their loving nature.</p>
-        </div>
-        <div class="card">
-          <img
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80"
-            alt="French Bulldog"
-          />
-          <h3>Happy Pup</h3>
-          <p>
-            Full of energy, joy, and endless cuddles — everyone’s best friend.
-          </p>
-        </div>
+      </div>
+
+      <div id="apiResults">
+        <p style="text-align: center; grid-column: 1/-1; opacity: 0.6">
+          Search for a breed to see live results!
+        </p>
       </div>
     </section>
 
     <section id="services">
       <h2 class="section-title">Our Services</h2>
-      <p class="section-desc">
-        Designed for modern pet parenting, powered by technology and love.
-      </p>
       <div class="cards">
         <div class="card">
           <h3>🐾 Smart Pet Profiles</h3>
-          <p>
-            Create digital identities showcasing your dog’s journey and growth.
-          </p>
-          <button class="service-btn">Learn More</button>
-        </div>
-        <div class="card">
-          <h3>📍 Local Playdates</h3>
-          <p>Connect with nearby dog owners for walks and play sessions.</p>
+          <p>Create digital identities for your dog’s journey.</p>
           <button class="service-btn">Learn More</button>
         </div>
         <div class="card">
           <h3>🤖 AI Pet Insights</h3>
-          <p>Get futuristic tips for health, training, and happiness.</p>
+          <p>Get futuristic tips for health and training.</p>
           <button class="service-btn">Learn More</button>
         </div>
       </div>
@@ -217,32 +232,17 @@
 
     <section id="community">
       <h2 class="section-title">Our 🐾 PAW Community</h2>
-      <p class="section-desc">
-        PAWriends is powered by a joyful, colorful, and supportive pack of dog
-        lovers. Every paw print 🐾 symbolizes friendship, trust, and
-        unconditional love.
-      </p>
       <div class="community-content">
         <div class="community-images">
           <img
             src="https://i.pinimg.com/1200x/99/1f/fb/991ffb33867853b334fda181941be583.jpg"
-            alt="Dog Paw Community Art"
-          />
-          <img
-            src="https://i.pinimg.com/736x/7a/85/d5/7a85d58270ab4d693b9868abb9372d1e.jpg"
-            alt="Cute Dog Paw Illustration"
-          />
-          <img
-            src="https://i.pinimg.com/736x/a9/fa/21/a9fa2199c73f87b94e48601b1f9e05e8.jpg"
-            alt="Playful Dog Paw Art"
+            alt="Community Art"
           />
         </div>
         <div class="community-text">
           <p>
-            🐾 Share training tips, health journeys, and heart-warming
-            moments.<br />🐾 Celebrate milestones from first walks to birthday
-            paw-ties.<br />🐾 Build friendships that go beyond screens — for
-            humans and dogs alike.
+            🐾 Share training tips.<br />🐾 Celebrate milestones.<br />🐾 Build
+            friendships.
           </p>
         </div>
       </div>
@@ -251,5 +251,7 @@
     <footer>
       <p>&copy; PAWriends | Designed by Finn and Niña Medrina</p>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
