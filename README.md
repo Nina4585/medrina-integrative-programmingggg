@@ -178,3 +178,20 @@ Exploring API Integration in a Web Application
 If YES, specify: I used ChatGPT to generate my ideas to add a API PAGE, ensuring all functionalities remains intact. All code was reviewed and modified by me .
 
 # 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a API PAGE, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.
+
+---
+
+🔹 Activity 7:
+Add Save Feature (Using localStorage)
+
+🔹 Description Explain: Enhance your existing API project by allowing users to save selected data using localStorage and display it in your system.
+
+🔹 Technologies Used Example: HTML5, CSS3, JAVA
+
+🔹 Features List at least 3 features of your landing page: local storage, save button, delete button, saved items page
+
+🔹 AI Assistance Disclosure (Required) Answer honestly: Yes
+
+If YES, specify: I used ChatGPT to generate my ideas to add a SAVE FEATURE USING LOCAL STORAGE, ensuring all functionalities remains intact. All code was reviewed and modified by me .
+
+# 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a SAVE FEATURE USING LOCAL STORAGE, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.

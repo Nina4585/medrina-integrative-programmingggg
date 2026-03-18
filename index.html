@@ -12,6 +12,12 @@
         --primary-yellow: #f1c40f;
         --dark-amber: #f39c12;
         --light-cream: #fef9e7;
+        --text-dark: #2c3e50;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", Arial, sans-serif;
       }
 
       #dogs {
@@ -75,6 +81,8 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         border-bottom: 4px solid var(--primary-yellow);
         transition: 0.3s;
+        display: flex;
+        flex-direction: column;
       }
 
       .api-card:hover {
@@ -90,11 +98,50 @@
       .api-card-info {
         padding: 15px;
         text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
+
       .api-card-info h3 {
         text-transform: capitalize;
         color: var(--dark-amber);
         margin: 5px 0;
+      }
+
+      /* --- FORCE FORMAL YELLOW STYLE ON ALL RESULT BUTTONS --- */
+      /* This targets the button inside api-card-info directly to fix the "staying the same" issue */
+      .api-card-info button {
+        background: linear-gradient(
+          180deg,
+          var(--primary-yellow) 0%,
+          #e6b800 100%
+        ) !important;
+        color: var(--text-dark) !important;
+        border: 1px solid #d4a700 !important;
+        padding: 10px 25px !important;
+        border-radius: 4px !important; /* Formal square-ish look */
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        cursor: pointer !important;
+        margin-top: 15px !important;
+        transition: all 0.2s ease !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        align-self: center !important;
+        width: auto !important;
+      }
+
+      .api-card-info button:hover {
+        background: linear-gradient(
+          180deg,
+          #e6b800 0%,
+          var(--primary-yellow) 100%
+        ) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
       }
 
       /* User Actions & Navigation */
@@ -127,6 +174,27 @@
         justify-content: center;
         color: white;
         font-size: 0.8rem;
+      }
+
+      .saved-btn-container {
+        text-align: center;
+        margin-top: 50px;
+      }
+      .saved-btn-container a button {
+        background: var(--primary-yellow);
+        border: none;
+        border-radius: 30px;
+        padding: 14px 30px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #333;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+        transition: all 0.3s ease;
+      }
+      .saved-btn-container a button:hover {
+        background: var(--dark-amber);
+        color: white;
       }
     </style>
   </head>
@@ -211,6 +279,12 @@
         <p style="text-align: center; grid-column: 1/-1; opacity: 0.6">
           Search for a breed to see live results!
         </p>
+      </div>
+
+      <div class="saved-btn-container">
+        <a href="saved.html">
+          <button>View Saved Dogs</button>
+        </a>
       </div>
     </section>
 

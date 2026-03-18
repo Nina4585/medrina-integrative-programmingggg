@@ -141,60 +141,130 @@ function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 }
+// ---------------- DOG BREED DESCRIPTIONS ----------------
+const dogDescriptions = {
+  beagle:
+    "A friendly and curious small hound known for its excellent sense of smell.",
+  pug: "A small, charming dog with a wrinkled face and playful personality.",
+  labrador: "A loyal and intelligent family dog, great for companionship.",
+  retriever: "Friendly and active dogs known for their love of fetching.",
+  "german shepherd":
+    "A strong and intelligent working dog often used in police roles.",
+  bulldog: "A calm and courageous dog with a muscular build.",
+  poodle: "An intelligent and elegant dog, easy to train.",
+  rottweiler: "A powerful and protective dog known for loyalty.",
+  husky: "An energetic sled dog known for its striking appearance.",
+  dalmatian: "A unique spotted dog known for its energy and elegance.",
+  chihuahua: "A tiny but confident dog with a big personality.",
+  doberman: "A fast, alert, and fearless guard dog.",
+  akita: "A large and loyal dog originally from Japan.",
+  boxer: "A playful and energetic dog, great with families.",
+  corgi: "A small herding dog with short legs and a cheerful nature.",
+  shiba: "A spirited and independent Japanese breed.",
+  mastiff: "A giant dog known for being gentle and protective.",
+  hound: "A hunting dog with a strong sense of smell.",
+  terrier: "A lively and brave dog, small but fearless.",
+  spaniel: "A gentle and affectionate companion dog.",
+  "golden retriever": "Friendly, intelligent, and devoted family dog.",
+};
 
-/* ---------------- DOG API INTEGRATION ---------------- */
+// ---------------- BREED NAME MAPPING FOR API ----------------
+const breedAPIMap = {
+  "german shepherd": "german/shepherd",
+  "golden retriever": "retriever/golden",
+  labrador: "labrador",
+  beagle: "beagle",
+  pug: "pug",
+  retriever: "retriever",
+  bulldog: "bulldog",
+  poodle: "poodle",
+  rottweiler: "rottweiler",
+  husky: "husky",
+  dalmatian: "dalmatian",
+  chihuahua: "chihuahua",
+  doberman: "doberman",
+  akita: "akita",
+  boxer: "boxer",
+  corgi: "corgi",
+  shiba: "shiba",
+  mastiff: "mastiff",
+  hound: "hound",
+  terrier: "terrier",
+  spaniel: "spaniel",
+};
+
+// ---------------- DOG SEARCH + SAVE ----------------
 document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector("#searchBtn");
   const breedInput = document.querySelector("#breedSearchInput");
   const resultsArea = document.querySelector("#apiResults");
 
-  if (searchBtn) {
-    searchBtn.addEventListener("click", () => {
-      const breedName = breedInput.value.trim().toLowerCase();
+  searchBtn?.addEventListener("click", () => {
+    const breedNameRaw = breedInput.value.trim().toLowerCase();
 
-      // 1. Validation: Check if input is empty
-      if (!breedName) {
-        resultsArea.innerHTML =
-          "<p style='grid-column:1/-1; color:red;'>Please enter a breed!</p>";
-        return;
-      }
-
-      // 2. Loading State
+    if (!breedNameRaw) {
       resultsArea.innerHTML =
-        "<p style='grid-column:1/-1;'>Fetching dogs from 2026 database...</p>";
+        "<p style='grid-column:1/-1; color:red;'>Please enter a breed!</p>";
+      return;
+    }
 
-      // 3. API Fetch with 2026.json label
-      fetch(
-        `https://dog.ceo/api/breed/${breedName}/images/random/3?v=2026.json`,
-      )
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Breed not found");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Success! 2026 JSON Data received:", data);
+    const apiBreed = breedAPIMap[breedNameRaw];
+    if (!apiBreed) {
+      resultsArea.innerHTML =
+        "<p style='grid-column:1/-1; color:red;'>Breed not found. Try 'husky', 'pug', or 'beagle'.</p>";
+      return;
+    }
 
-          resultsArea.innerHTML = ""; // Clear the loading text
+    resultsArea.innerHTML = "<p style='grid-column:1/-1;'>Fetching dogs...</p>";
 
-          // 4. Loop through the images and display them
-          data.message.forEach((imgUrl) => {
-            resultsArea.innerHTML += `
-                <div class="api-card">
-                    <img src="${imgUrl}" alt="Dog">
-                    <div class="api-card-info">
-                        <h3>${breedName}</h3>
-                        <p>Live API Result (2026)</p>
-                    </div>
-                </div>`;
-          });
-        })
-        .catch((error) => {
-          console.error("API Error:", error);
-          resultsArea.innerHTML =
-            "<p style='grid-column:1/-1; color:red;'>Breed not found. Try 'hound', 'pug', or 'poodle'.</p>";
+    // Fetch images from Dog CEO API
+    fetch(`https://dog.ceo/api/breed/${apiBreed}/images/random/3`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status !== "success") throw new Error("API error");
+
+        resultsArea.innerHTML = "";
+
+        const description =
+          dogDescriptions[breedNameRaw] ||
+          "A wonderful dog breed with unique traits and characteristics.";
+
+        data.message.forEach((imgUrl) => {
+          resultsArea.innerHTML += `
+            <div class="api-card">
+              <img src="${imgUrl}" alt="Dog image of ${breedNameRaw}">
+              <div class="api-card-info">
+                <h3>${breedNameRaw}</h3>
+                <p>${description}</p>
+                <button onclick="saveDog('${breedNameRaw}', '${imgUrl}')">Save</button>
+              </div>
+            </div>
+          `;
         });
-    }); // End of Event Listener
-  }
+      })
+      .catch(() => {
+        resultsArea.innerHTML =
+          "<p style='grid-column:1/-1; color:red;'>Could not fetch dogs. Try another breed.</p>";
+      });
+  });
 });
+
+// ---------------- SAVE FUNCTION ----------------
+function saveDog(name, image) {
+  // Get saved dogs from localStorage
+  let savedDogs = JSON.parse(localStorage.getItem("savedDogs")) || [];
+
+  // Check for duplicates
+  const exists = savedDogs.some(
+    (dog) => dog.name === name && dog.image === image,
+  );
+  if (exists) {
+    alert("This dog is already saved!");
+    return;
+  }
+
+  // Add new dog and save
+  savedDogs.push({ name, image });
+  localStorage.setItem("savedDogs", JSON.stringify(savedDogs));
+  alert("Dog saved successfully!");
+}
