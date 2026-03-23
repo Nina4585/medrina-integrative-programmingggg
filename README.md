@@ -195,3 +195,18 @@ Add Save Feature (Using localStorage)
 If YES, specify: I used ChatGPT to generate my ideas to add a SAVE FEATURE USING LOCAL STORAGE, ensuring all functionalities remains intact. All code was reviewed and modified by me .
 
 # 🔹 Learning Reflection (Short) Answer briefly: I learned how the complicated side of adding a SAVE FEATURE USING LOCAL STORAGE, while ensuring that the functionalities of some parts still remain intact. The most challenging part was carefully checking each validation - if its works or are the still errors in the validation logic.
+
+---
+
+🔹 Activity 8:
+API REFINEMENT ACTIVITY
+
+🔹Project Purpose: It allows users to discover various dog breeds, explore pet profiles, and save their favorite dogs to a personalized community dashboard.
+
+🔹API Used: Dog CEO API (specifically the `breed/{breed}/images` endpoints).
+
+🔹Justification: This API is the core engine of the Start Hunting feature, providing real-time, authentic visual data for different dog breeds. It belongs on the website because it transforms a static directory into a dynamic discovery tool, allowing users to interact with live data to build their own Saved Pack.
+
+🔹Integration: Search Input: Users enter a breed (e.g., "Husky") which queries the API.
+Data UI: The API returns high-quality images which are then mapped to custom data objects (Name, Age, Owner, and Bio) within the code.
+Utility: Instead of just looking at random photos, users can "Save to Pack," which persists the API data to `localStorage`, making the information useful for profile building and community tracking.

@@ -168,7 +168,7 @@ const dogDescriptions = {
   "golden retriever": "Friendly, intelligent, and devoted family dog.",
 };
 
-// ---------------- BREED NAME MAPPING FOR API ----------------
+// ---------------- BREED NAME MAPPING ----------------
 const breedAPIMap = {
   "german shepherd": "german/shepherd",
   "golden retriever": "retriever/golden",
@@ -193,7 +193,179 @@ const breedAPIMap = {
   spaniel: "spaniel",
 };
 
-// ---------------- DOG SEARCH + SAVE ----------------
+// ---------------- DOG PROFILES ----------------
+const dogProfiles = {
+  "german shepherd": [
+    {
+      name: "Rex",
+      age: 4,
+      owner: "John Cruz",
+      description: "A loyal guardian who is always alert and ready to protect.",
+    },
+    {
+      name: "Athena",
+      age: 3,
+      owner: "Maria Santos",
+      description:
+        "Graceful and intelligent, Athena excels at learning new commands.",
+    },
+    {
+      name: "Bolt",
+      age: 2,
+      owner: "Kevin Reyes",
+      description:
+        "Fearless and energetic, Bolt leads every adventure with excitement.",
+    },
+  ],
+  beagle: [
+    {
+      name: "Scout",
+      age: 2,
+      owner: "Angela Lopez",
+      description:
+        "A curious explorer who follows every scent with excitement.",
+    },
+    {
+      name: "Molly",
+      age: 4,
+      owner: "Carlo Mendoza",
+      description: "A sweet companion who loves cuddles and attention.",
+    },
+    {
+      name: "Finn",
+      age: 3,
+      owner: "Jessa Ramos",
+      description: "Always ready for fun, Finn enjoys long walks and games.",
+    },
+  ],
+  bulldog: [
+    {
+      name: "Tank",
+      age: 5,
+      owner: "Mark Villanueva",
+      description:
+        "Strong-looking but gentle, Tank enjoys relaxing most of the day.",
+    },
+    {
+      name: "Rosie",
+      age: 3,
+      owner: "Ella Torres",
+      description:
+        "Calm and loving, Rosie enjoys peaceful moments with her owner.",
+    },
+    {
+      name: "Bruno",
+      age: 4,
+      owner: "Luis Garcia",
+      description: "Confident and bold, Bruno carries a charming personality.",
+    },
+  ],
+  poodle: [
+    {
+      name: "Belle",
+      age: 2,
+      owner: "Sophia Lim",
+      description:
+        "Elegant and smart, Belle loves attention and performing tricks.",
+    },
+    {
+      name: "Charlie",
+      age: 3,
+      owner: "Daniel Ong",
+      description: "Playful and clever, always ready to show new tricks.",
+    },
+    {
+      name: "Lulu",
+      age: 1,
+      owner: "Trisha Yap",
+      description: "Gentle and affectionate, Lulu enjoys being around people.",
+    },
+  ],
+  boxer: [
+    {
+      name: "Rocky",
+      age: 3,
+      owner: "Victor Santos",
+      description: "Energetic and fun-loving, Rocky enjoys active playtime.",
+    },
+    {
+      name: "Bella",
+      age: 2,
+      owner: "Cathy Rivera",
+      description: "Protective and loving, Bella stays close to her family.",
+    },
+    {
+      name: "Zeus",
+      age: 4,
+      owner: "Adrian Gomez",
+      description:
+        "Confident and strong, Zeus commands attention wherever he goes.",
+    },
+  ],
+  rottweiler: [
+    {
+      name: "Diesel",
+      age: 5,
+      owner: "Arnold Bautista",
+      description: "A strong protector who is deeply loyal to his owner.",
+    },
+    {
+      name: "Ruby",
+      age: 3,
+      owner: "Vanessa Cruz",
+      description: "Balances strength with affection, always alert and caring.",
+    },
+    {
+      name: "Thor",
+      age: 4,
+      owner: "Jericho Navarro",
+      description:
+        "Fearless and powerful, Thor thrives in challenging situations.",
+    },
+  ],
+  chihuahua: [
+    {
+      name: "Peanut",
+      age: 1,
+      owner: "Kimberly Reyes",
+      description: "Tiny but brave, Peanut has a huge personality.",
+    },
+    {
+      name: "Lola",
+      age: 2,
+      owner: "Grace Aquino",
+      description: "Sassy and sweet, Lola loves being the center of attention.",
+    },
+    {
+      name: "Chico",
+      age: 1,
+      owner: "Marco Dela Cruz",
+      description: "Fast and playful, Chico is always on the move.",
+    },
+  ],
+  dalmatian: [
+    {
+      name: "Spot",
+      age: 3,
+      owner: "Ethan Torres",
+      description: "Loves running and showing off his unique spotted coat.",
+    },
+    {
+      name: "Nala",
+      age: 2,
+      owner: "Isabella Perez",
+      description: "Elegant and calm, Nala moves with natural grace.",
+    },
+    {
+      name: "Dash",
+      age: 4,
+      owner: "Noah Fernandez",
+      description: "Quick and adventurous, Dash loves exploring new places.",
+    },
+  ],
+};
+
+// ---------------- DOG SEARCH ----------------
 document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector("#searchBtn");
   const breedInput = document.querySelector("#breedSearchInput");
@@ -203,40 +375,77 @@ document.addEventListener("DOMContentLoaded", () => {
     const breedNameRaw = breedInput.value.trim().toLowerCase();
 
     if (!breedNameRaw) {
-      resultsArea.innerHTML =
-        "<p style='grid-column:1/-1; color:red;'>Please enter a breed!</p>";
+      resultsArea.innerHTML = "<p style='color:red;'>Please enter a breed!</p>";
       return;
     }
 
     const apiBreed = breedAPIMap[breedNameRaw];
     if (!apiBreed) {
-      resultsArea.innerHTML =
-        "<p style='grid-column:1/-1; color:red;'>Breed not found. Try 'husky', 'pug', or 'beagle'.</p>";
+      resultsArea.innerHTML = "<p style='color:red;'>Breed not found.</p>";
       return;
     }
 
-    resultsArea.innerHTML = "<p style='grid-column:1/-1;'>Fetching dogs...</p>";
+    resultsArea.innerHTML = "<p>Fetching dogs...</p>";
 
-    // Fetch images from Dog CEO API
     fetch(`https://dog.ceo/api/breed/${apiBreed}/images/random/3`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.status !== "success") throw new Error("API error");
-
         resultsArea.innerHTML = "";
 
-        const description =
-          dogDescriptions[breedNameRaw] ||
-          "A wonderful dog breed with unique traits and characteristics.";
+        const dogs = dogProfiles[breedNameRaw] || [];
 
-        data.message.forEach((imgUrl) => {
+        const fallbackNames = ["Buddy", "Max", "Charlie", "Rocky", "Milo"];
+        const fallbackOwners = [
+          "Alex Cruz",
+          "Jamie Santos",
+          "Chris Lopez",
+          "Taylor Ramos",
+          "Jordan Reyes",
+        ];
+        const fallbackDescriptions = [
+          "Loves running around and meeting new friends.",
+          "Enjoys relaxing and cuddling with its owner.",
+          "Full of energy and always ready to play.",
+          "Curious and playful, always exploring.",
+          "Loyal and affectionate with a friendly nature.",
+          "Brave and confident despite its size.",
+          "Very social and loves attention.",
+          "Enjoys outdoor adventures and long walks.",
+          "Playful and loves chasing toys.",
+          "Gentle and calm, perfect companion.",
+        ];
+
+        data.message.forEach((imgUrl, index) => {
+          let dog;
+
+          if (dogs.length > 0) {
+            dog = dogs[index % dogs.length];
+          } else {
+            dog = {
+              name: fallbackNames[index % fallbackNames.length],
+              age: Math.floor(Math.random() * 5) + 1,
+              owner: fallbackOwners[index % fallbackOwners.length],
+              description:
+                fallbackDescriptions[index % fallbackDescriptions.length],
+            };
+          }
+
           resultsArea.innerHTML += `
             <div class="api-card">
-              <img src="${imgUrl}" alt="Dog image of ${breedNameRaw}">
+              <img src="${imgUrl}">
               <div class="api-card-info">
-                <h3>${breedNameRaw}</h3>
-                <p>${description}</p>
-                <button onclick="saveDog('${breedNameRaw}', '${imgUrl}')">Save</button>
+                <h3>${dog.name} (${breedNameRaw})</h3>
+                <p><strong>Age:</strong> ${dog.age}</p>
+                <p><strong>Owner:</strong> ${dog.owner}</p>
+                <p>${dog.description}</p>
+                <button onclick="saveDog(
+                  '${dog.name}',
+                  '${imgUrl}',
+                  '${dog.age}',
+                  '${dog.owner}',
+                  '${dog.description}',
+                  '${breedNameRaw}'
+                )">Save</button>
               </div>
             </div>
           `;
@@ -244,27 +453,26 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(() => {
         resultsArea.innerHTML =
-          "<p style='grid-column:1/-1; color:red;'>Could not fetch dogs. Try another breed.</p>";
+          "<p style='color:red;'>Error fetching dogs.</p>";
       });
   });
 });
 
 // ---------------- SAVE FUNCTION ----------------
-function saveDog(name, image) {
-  // Get saved dogs from localStorage
+function saveDog(name, image, age, owner, description, breed) {
   let savedDogs = JSON.parse(localStorage.getItem("savedDogs")) || [];
 
-  // Check for duplicates
   const exists = savedDogs.some(
     (dog) => dog.name === name && dog.image === image,
   );
+
   if (exists) {
     alert("This dog is already saved!");
     return;
   }
 
-  // Add new dog and save
-  savedDogs.push({ name, image });
+  savedDogs.push({ name, image, age, owner, description, breed });
   localStorage.setItem("savedDogs", JSON.stringify(savedDogs));
+
   alert("Dog saved successfully!");
 }

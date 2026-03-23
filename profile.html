@@ -4,17 +4,197 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PAWriends | Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <script src="script.js"></script>
+    <style>
+      :root {
+        --primary: #f1c40f;
+        --accent: #f39c12;
+        --dark: #1a1a1a;
+        --cream: #fffdf5;
+        --glass: rgba(255, 255, 255, 0.85);
+        --radius: 40px;
+        --transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: var(--cream);
+        color: var(--dark);
+        line-height: 1.4;
+      }
+
+      /* --- NAV (Matched to Index) --- */
+      header {
+        position: sticky;
+        top: 20px;
+        margin: 0 20px;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 100px;
+        z-index: 1000;
+        padding: 15px 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 900;
+        letter-spacing: -1px;
+        text-decoration: none;
+        color: var(--dark);
+      }
+      .logo .paw {
+        color: var(--dark);
+      }
+      .logo .riends {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+        transform: scale(1.1);
+      }
+
+      /* --- DASHBOARD LAYOUT --- */
+      section {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 5%;
+      }
+
+      .section-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        letter-spacing: -2px;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .section-desc {
+        font-size: 1.2rem;
+        opacity: 0.7;
+        margin-bottom: 40px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 30px;
+      }
+
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: var(--radius);
+        border: 1px solid #eee;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+      }
+
+      /* --- COMPONENTS --- */
+      .avatar-large {
+        width: 100px;
+        height: 100px;
+        background: var(--primary);
+        color: var(--dark);
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        transform: rotate(-5deg);
+      }
+
+      .btn {
+        background: var(--dark);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        text-align: center;
+        transition: var(--transition);
+        display: inline-block;
+      }
+
+      .btn:hover {
+        background: var(--accent);
+        transform: scale(1.05) rotate(2deg);
+      }
+
+      .stat-box {
+        text-align: center;
+        flex: 1;
+        background: var(--cream);
+        padding: 1.5rem;
+        border-radius: 25px;
+        border: 1px solid #f3f4f6;
+        transition: 0.3s;
+      }
+
+      .stat-box:hover {
+        background: var(--primary);
+      }
+
+      footer {
+        padding: 80px;
+        text-align: center;
+        opacity: 0.5;
+        font-weight: 800;
+      }
+
+      @media (max-width: 900px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
 
   <body>
     <header>
       <nav>
-        <div class="logo">
+        <a href="index.html" class="logo">
           <span class="paw">PAW</span><span class="riends">riends</span>
-        </div>
+        </a>
         <div class="nav-links">
           <a href="index.html">Home</a>
           <a href="settings.html">Settings</a>
@@ -31,7 +211,12 @@
         <div class="card" style="align-items: center; text-align: center">
           <div class="avatar-large">FM</div>
           <h3
-            style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark)"
+            style="
+              font-size: 1.8rem;
+              margin-bottom: 0.5rem;
+              color: var(--dark);
+              letter-spacing: -1px;
+            "
           >
             Finn Medrina
           </h3>
@@ -40,12 +225,13 @@
             style="
               background: #ecfdf5;
               color: #059669;
-              padding: 4px 12px;
+              padding: 6px 16px;
               border-radius: 20px;
               font-size: 0.75rem;
-              font-weight: 700;
+              font-weight: 900;
               margin-bottom: 1.5rem;
               display: inline-block;
+              letter-spacing: 1px;
             "
           >
             PRO MEMBER
@@ -74,70 +260,75 @@
           </div>
 
           <div style="width: 100%; margin-top: 2rem">
-            <a
-              href="settings.html"
-              class="btn"
-              style="width: 100%; justify-content: center"
+            <a href="settings.html" class="btn" style="width: 100%"
               >Edit Profile</a
             >
           </div>
         </div>
 
         <div class="card">
-          <h3 style="margin-bottom: 1rem; color: var(--dark)">About Me</h3>
-          <p style="color: #4b5563; line-height: 1.7; margin-bottom: 2rem">
+          <h3
+            style="margin-bottom: 1rem; color: var(--dark); font-size: 1.5rem"
+          >
+            About Me
+          </h3>
+          <p
+            style="
+              color: #4b5563;
+              line-height: 1.7;
+              margin-bottom: 2rem;
+              font-size: 1.1rem;
+            "
+          >
             Dog lover 🐾 and community builder. Passionate about connecting
             people through technology. Currently exploring new ways to make pet
             care smarter and more accessible.
           </p>
 
-          <h4 style="margin-bottom: 1rem; font-size: 1rem; color: var(--dark)">
+          <h4
+            style="
+              margin-bottom: 1.5rem;
+              font-size: 1.1rem;
+              color: var(--dark);
+              font-weight: 800;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+            "
+          >
             Community Stats
           </h4>
           <div style="display: flex; gap: 1rem">
-            <div
-              style="
-                text-align: center;
-                flex: 1;
-                background: #f9fafb;
-                padding: 1.5rem;
-                border-radius: 12px;
-                border: 1px solid #f3f4f6;
-              "
-            >
+            <div class="stat-box">
               <div
-                style="
-                  font-weight: 800;
-                  font-size: 1.5rem;
-                  color: var(--primary);
-                "
+                style="font-weight: 900; font-size: 2rem; color: var(--dark)"
               >
                 24
               </div>
-              <div style="font-size: 0.8rem; color: #6b7280; font-weight: 600">
+              <div
+                style="
+                  font-size: 0.8rem;
+                  color: #6b7280;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                "
+              >
                 Friends
               </div>
             </div>
-            <div
-              style="
-                text-align: center;
-                flex: 1;
-                background: #f9fafb;
-                padding: 1.5rem;
-                border-radius: 12px;
-                border: 1px solid #f3f4f6;
-              "
-            >
+            <div class="stat-box">
               <div
-                style="
-                  font-weight: 800;
-                  font-size: 1.5rem;
-                  color: var(--primary);
-                "
+                style="font-weight: 900; font-size: 2rem; color: var(--dark)"
               >
                 12
               </div>
-              <div style="font-size: 0.8rem; color: #6b7280; font-weight: 600">
+              <div
+                style="
+                  font-size: 0.8rem;
+                  color: #6b7280;
+                  font-weight: 700;
+                  text-transform: uppercase;
+                "
+              >
                 Dogs
               </div>
             </div>
@@ -147,7 +338,9 @@
     </section>
 
     <footer>
-      <p>&copy; 2024 PAWriends Inc.</p>
+      <p>&copy; 2026 PAWriends Inc. | Designed by Finn and Niña Medrina</p>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>

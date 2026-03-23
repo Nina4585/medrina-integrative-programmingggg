@@ -3,329 +3,622 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PAWriends | Futuristic Pet Community</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>PAWriends | High-Energy Pet Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-      /* --- API INTEGRATION STYLES (YELLOW THEME) --- */
       :root {
-        --primary-yellow: #f1c40f;
-        --dark-amber: #f39c12;
-        --light-cream: #fef9e7;
-        --text-dark: #2c3e50;
+        --primary: #f1c40f;
+        --accent: #f39c12;
+        --dark: #1a1a1a;
+        --cream: #fffdf5;
+        --glass: rgba(255, 255, 255, 0.85);
+        --radius: 40px;
+        --transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
       }
 
       body {
-        margin: 0;
-        font-family: "Poppins", Arial, sans-serif;
+        font-family: "Outfit", sans-serif;
+        background-color: var(--cream);
+        color: var(--dark);
+        line-height: 1.4;
+        overflow-x: hidden;
       }
 
-      #dogs {
-        background-color: var(--light-cream);
-        padding: 60px 20px;
-        border-radius: 50px 50px 0 0;
+      /* --- NAV --- */
+      header {
+        position: sticky;
+        top: 20px;
+        margin: 0 20px;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 100px;
+        z-index: 1000;
+        padding: 15px 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       }
 
-      .api-search-container {
-        text-align: center;
-        margin-bottom: 40px;
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
-      .search-box {
-        display: inline-flex;
-        gap: 10px;
-        background: white;
-        padding: 15px 25px;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border: 2px solid var(--primary-yellow);
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 900;
+        letter-spacing: -1px;
+        text-decoration: none;
+        color: var(--dark);
+      }
+      .logo span {
+        color: var(--accent);
       }
 
-      .search-box input {
-        border: none;
-        outline: none;
-        padding: 10px;
-        width: 250px;
-        font-size: 1rem;
+      .nav-links {
+        display: flex;
+        gap: 30px;
       }
-
-      .search-box button {
-        background: var(--dark-amber);
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-weight: bold;
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 0.9rem;
         transition: 0.3s;
       }
-
-      .search-box button:hover {
-        background: #d35400;
-        transform: scale(1.05);
+      .nav-links a:hover {
+        color: var(--accent);
+        transform: scale(1.1);
       }
 
-      /* Grid for API results */
+      .btn-main {
+        background: var(--dark);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: var(--transition);
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+      }
+      .btn-main:hover {
+        transform: scale(1.05) rotate(-2deg);
+        background: var(--accent);
+      }
+
+      /* --- HERO --- */
+      #home {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        min-height: 90vh;
+        align-items: center;
+        padding: 80px 5%;
+        gap: 50px;
+      }
+      .hero-text h1 {
+        font-size: clamp(3.5rem, 8vw, 6.5rem);
+        line-height: 0.85;
+        letter-spacing: -4px;
+        margin-bottom: 25px;
+      }
+      .hero-img-wrap img {
+        width: 100%;
+        border-radius: var(--radius);
+        transform: rotate(3deg);
+        box-shadow: 30px 30px 0px var(--primary);
+        transition: var(--transition);
+      }
+
+      /* --- ABOUT --- */
+      #about {
+        padding: 120px 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        background: white;
+        border-radius: 80px;
+        margin: 40px 20px;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .about-grid img {
+        width: 100%;
+        border-radius: 20px;
+        height: 200px;
+        object-fit: cover;
+      }
+      .about-grid img:nth-child(2) {
+        margin-top: 30px;
+      }
+
+      /* --- DOGS GRID --- */
+      #dogs {
+        padding: 100px 5% 50px;
+        text-align: center;
+        background: var(--primary);
+        border-radius: 80px 80px 0 0;
+        margin-top: 100px;
+      }
+      .search-container {
+        display: flex;
+        background: white;
+        max-width: 700px;
+        margin: -140px auto 50px;
+        padding: 12px;
+        border-radius: 100px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+      }
+      .search-container input {
+        flex: 1;
+        border: none;
+        outline: none;
+        padding: 0 30px;
+        font-size: 1.2rem;
+        font-family: inherit;
+        border-radius: 100px;
+      }
+
       #apiResults {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 25px;
-        max-width: 1200px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 50px 0;
+        max-width: 1300px;
         margin: 0 auto;
       }
 
       .api-card {
         background: white;
-        border-radius: 20px;
-        overflow: hidden;
+        padding: 20px;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        text-align: left;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        border-bottom: 4px solid var(--primary-yellow);
-        transition: 0.3s;
-        display: flex;
-        flex-direction: column;
       }
-
       .api-card:hover {
-        transform: translateY(-10px);
+        transform: translateY(-15px) rotate(1deg);
       }
-
       .api-card img {
         width: 100%;
-        height: 200px;
+        height: 280px;
         object-fit: cover;
+        border-radius: 25px;
+        margin-bottom: 15px;
       }
-
-      .api-card-info {
-        padding: 15px;
-        text-align: center;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
       .api-card-info h3 {
         text-transform: capitalize;
-        color: var(--dark-amber);
-        margin: 5px 0;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+      .api-card-info p {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+        color: #555;
       }
 
-      /* --- FORCE FORMAL YELLOW STYLE ON ALL RESULT BUTTONS --- */
-      /* This targets the button inside api-card-info directly to fix the "staying the same" issue */
-      .api-card-info button {
-        background: linear-gradient(
-          180deg,
-          var(--primary-yellow) 0%,
-          #e6b800 100%
-        ) !important;
-        color: var(--text-dark) !important;
-        border: 1px solid #d4a700 !important;
-        padding: 10px 25px !important;
-        border-radius: 4px !important; /* Formal square-ish look */
-        font-weight: 600 !important;
-        font-size: 0.85rem !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        cursor: pointer !important;
-        margin-top: 15px !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-        align-self: center !important;
-        width: auto !important;
-      }
-
-      .api-card-info button:hover {
-        background: linear-gradient(
-          180deg,
-          #e6b800 0%,
-          var(--primary-yellow) 100%
-        ) !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
-      }
-
-      /* User Actions & Navigation */
-      .user-actions {
-        display: flex;
-        align-items: center;
-        gap: 1.2rem;
-        margin-left: auto;
-      }
-      .btn-profile {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-        background: #fff;
-        padding: 0.3rem 1rem 0.3rem 0.3rem;
-        border-radius: 30px;
-        border: 2px solid #eee;
-        color: #333;
-        font-weight: 600;
-        font-size: 0.9rem;
-      }
-      .avatar-small {
-        width: 32px;
-        height: 32px;
-        background: linear-gradient(135deg, #ff9800, #ffd54f);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 0.8rem;
-      }
-
-      .saved-btn-container {
+      /* --- SERVICES (TECH STACK) --- */
+      #services {
+        padding: 120px 5%;
         text-align: center;
+      }
+      .bento-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 20px;
         margin-top: 50px;
       }
-      .saved-btn-container a button {
-        background: var(--primary-yellow);
-        border: none;
-        border-radius: 30px;
-        padding: 14px 30px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #333;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
-        transition: all 0.3s ease;
+
+      .bento-item {
+        background: white;
+        padding: 40px;
+        border-radius: var(--radius);
+        text-align: left;
+        border: 1px solid #eee;
+        transition: var(--transition);
+        position: relative;
       }
-      .saved-btn-container a button:hover {
-        background: var(--dark-amber);
+
+      .bento-item:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        border-color: var(--primary);
+        background: #fff;
+      }
+      .bento-item h3 {
+        transition: 0.3s;
+      }
+      .bento-item:hover h3 {
+        color: var(--accent);
+        transform: translateX(5px);
+      }
+      .bento-item span {
+        display: inline-block;
+        transition: 0.4s;
+      }
+      .bento-item:hover span {
+        transform: scale(1.4) rotate(-15deg);
+      }
+
+      .item-large {
+        grid-row: span 2;
+        background: #fff4cc;
+        border: none;
+      }
+      .item-large:hover {
+        background: #ffedab;
+      }
+
+      /* --- COMMUNITY --- */
+      #community {
+        margin: 100px 5% 50px;
+        background: var(--dark);
         color: white;
+        padding: 100px 80px;
+        border-radius: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .community-content h2 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        line-height: 0.9;
+      }
+      .community-img {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 10px solid var(--primary);
+        transition: 0.5s;
+      }
+      .community-img:hover {
+        transform: scale(1.05) rotate(5deg);
+      }
+
+      footer {
+        padding: 80px;
+        text-align: center;
+        opacity: 0.5;
+        font-weight: 800;
+      }
+
+      @media (max-width: 1000px) {
+        #home,
+        #about,
+        #community {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .bento-grid {
+          grid-template-columns: 1fr;
+        }
+        .community-img {
+          display: none;
+        }
+        .search-container {
+          flex-direction: column;
+          border-radius: 30px;
+        }
+        .search-container input {
+          padding: 15px;
+          text-align: center;
+        }
       }
     </style>
   </head>
   <body>
     <header>
       <nav>
-        <div class="logo">
-          <span class="paw">PAW</span><span class="riends">riends</span>
-        </div>
-
+        <a href="#home" class="logo">PAW<span>riends</span></a>
         <div class="nav-links">
-          <a href="#">Home</a>
+          <a href="#home">Home</a>
           <a href="#about">About</a>
-          <a href="#dogs">Dogs (API)</a>
+          <a href="#dogs">Dogs</a>
           <a href="#services">Services</a>
           <a href="#community">Community</a>
         </div>
-
-        <div class="user-actions">
-          <a href="settings.html" class="icon-link" title="Settings">⚙️</a>
-          <a href="profile.html" class="btn-profile">
-            <span class="avatar-small">FM</span> My Profile
-          </a>
-        </div>
+        <a href="profile.html" class="btn-main">My Profile</a>
       </nav>
     </header>
 
-    <section class="hero">
-      <div class="hero-content">
-        <h1><span class="paw">PAW</span><span class="riends">riends</span></h1>
-        <p>
-          A lively community where dog lovers connect, share, and grow together.
+    <section id="home">
+      <div class="hero-text">
+        <h1>Born<br />To Be<br /><span>Wild.</span></h1>
+        <p style="font-size: 1.4rem; margin-bottom: 40px; opacity: 0.8">
+          The world's first AI-powered social pack for modern pups.
         </p>
-        <div class="hero-buttons">
-          <a href="login.html" class="btn primary">Join the Pack</a>
-          <a href="#dogs" class="btn">Search Breeds</a>
-        </div>
+        <a
+          href="#dogs"
+          class="btn-main"
+          style="padding: 20px 50px; font-size: 1.2rem"
+          >Start Hunting</a
+        >
       </div>
-      <div class="hero-image">
+      <div class="hero-img-wrap">
         <img
           src="https://i.pinimg.com/1200x/d0/27/00/d0270046239581962b09e2ded021d300.jpg"
-          alt="Futuristic Dog Art"
+          alt="Hero"
         />
       </div>
     </section>
 
     <section id="about">
-      <h2 class="section-title">About PAWriends</h2>
-      <p class="section-desc">
-        Celebrating dogs as family through technology and compassion.
-      </p>
-      <div class="about-images">
+      <div class="about-grid">
         <img
           src="https://i.pinimg.com/1200x/3c/0c/b3/3c0cb36e2665658102bee9a6596fbf56.jpg"
-          alt="Dog 1"
         />
         <img
           src="https://i.pinimg.com/736x/58/19/84/5819843e7bcee46cb6c0a555b86b6644.jpg"
-          alt="Dog 2"
         />
+      </div>
+      <div class="about-content">
+        <h2 style="font-size: 3.5rem; line-height: 1; margin-bottom: 20px">
+          We Don't Just Like Dogs. We Obsess.
+        </h2>
+        <p style="font-size: 1.1rem; opacity: 0.7">
+          PAWriends is a tech-driven community designed to make every tail wag
+          faster. From API-powered breed discovery to smart DNA tracking, we are
+          the pack of the future.
+        </p>
       </div>
     </section>
 
     <section id="dogs">
-      <h2 class="section-title">Meet Our Dogs</h2>
-      <p class="section-desc">
-        Use our Live API to explore different breeds in the community!
-      </p>
-
-      <div class="api-search-container">
-        <div class="search-box">
-          <input
-            type="text"
-            id="breedSearchInput"
-            placeholder="Enter breed (e.g. Husky, Pug)"
-          />
-          <button id="searchBtn">Find Pups</button>
-        </div>
+      <div class="search-container">
+        <input
+          type="text"
+          id="breedSearchInput"
+          placeholder="Enter breed (e.g. Beagle, Pug, Husky)..."
+        />
+        <button id="searchBtn" class="btn-main">SEARCH</button>
       </div>
-
       <div id="apiResults">
-        <p style="text-align: center; grid-column: 1/-1; opacity: 0.6">
-          Search for a breed to see live results!
+        <p
+          style="
+            grid-column: 1/-1;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #5d4b00;
+          "
+        >
+          Search a breed to fill your grid!
         </p>
-      </div>
-
-      <div class="saved-btn-container">
-        <a href="saved.html">
-          <button>View Saved Dogs</button>
-        </a>
       </div>
     </section>
 
     <section id="services">
-      <h2 class="section-title">Our Services</h2>
-      <div class="cards">
-        <div class="card">
-          <h3>🐾 Smart Pet Profiles</h3>
-          <p>Create digital identities for your dog’s journey.</p>
-          <button class="service-btn">Learn More</button>
+      <h2 style="font-size: 3.5rem; letter-spacing: -2px">Our Tech Stack</h2>
+      <div class="bento-grid">
+        <div class="bento-item item-large">
+          <span style="font-size: 3rem">🧬</span>
+          <h3>Smart DNA Profiling</h3>
+          <p>
+            Securely store your pup's health data and digital ID in our
+            encrypted pet-cloud.
+          </p>
         </div>
-        <div class="card">
-          <h3>🤖 AI Pet Insights</h3>
-          <p>Get futuristic tips for health and training.</p>
-          <button class="service-btn">Learn More</button>
+        <div class="bento-item">
+          <span>🤖</span>
+          <h3>AI Wellness</h3>
+          <p>
+            Real-time motion tracking and behavior analytics powered by deep
+            learning.
+          </p>
+        </div>
+        <div class="bento-item">
+          <span>📍</span>
+          <h3>Local Packs</h3>
+          <p>Find nearby parks and connect with local dog owners instantly.</p>
         </div>
       </div>
     </section>
 
     <section id="community">
-      <h2 class="section-title">Our 🐾 PAW Community</h2>
       <div class="community-content">
-        <div class="community-images">
-          <img
-            src="https://i.pinimg.com/1200x/99/1f/fb/991ffb33867853b334fda181941be583.jpg"
-            alt="Community Art"
-          />
-        </div>
-        <div class="community-text">
-          <p>
-            🐾 Share training tips.<br />🐾 Celebrate milestones.<br />🐾 Build
-            friendships.
-          </p>
-        </div>
+        <h2>Join The<br />Global<br />Pack.</h2>
+        <p style="margin: 30px 0; font-size: 1.2rem; opacity: 0.8">
+          200k+ users already joined.
+        </p>
+        <a
+          href="login.html"
+          class="btn-main"
+          style="background: var(--primary); color: var(--dark)"
+          >BECOME A MEMBER</a
+        >
       </div>
+      <img
+        src="https://i.pinimg.com/1200x/99/1f/fb/991ffb33867853b334fda181941be583.jpg"
+        class="community-img"
+      />
     </section>
 
-    <footer>
-      <p>&copy; PAWriends | Designed by Finn and Niña Medrina</p>
-    </footer>
+    <footer>&copy; 2026 PAWriends | Designed by Finn and Niña Medrina</footer>
 
-    <script src="script.js"></script>
+    <script>
+      // ---------------- DATA ----------------
+      const breedAPIMap = {
+        "german shepherd": "german/shepherd",
+        "golden retriever": "retriever/golden",
+        labrador: "labrador",
+        beagle: "beagle",
+        pug: "pug",
+        retriever: "retriever",
+        bulldog: "bulldog",
+        poodle: "poodle",
+        rottweiler: "rottweiler",
+        husky: "husky",
+        dalmatian: "dalmatian",
+        chihuahua: "chihuahua",
+        doberman: "doberman",
+        akita: "akita",
+        boxer: "boxer",
+        corgi: "corgi",
+        shiba: "shiba",
+        mastiff: "mastiff",
+        hound: "hound",
+        terrier: "terrier",
+        spaniel: "spaniel",
+      };
+
+      const dogProfiles = {
+        "german shepherd": [
+          {
+            name: "Rex",
+            age: 4,
+            owner: "John Cruz",
+            description: "A loyal guardian always alert.",
+          },
+          {
+            name: "Athena",
+            age: 3,
+            owner: "Maria Santos",
+            description: "Graceful and highly intelligent.",
+          },
+        ],
+        beagle: [
+          {
+            name: "Scout",
+            age: 2,
+            owner: "Angela Lopez",
+            description: "A curious explorer following every scent.",
+          },
+        ],
+      };
+
+      const fallbackNames = [
+        "Buddy",
+        "Max",
+        "Charlie",
+        "Rocky",
+        "Luna",
+        "Bella",
+      ];
+      const fallbackOwners = [
+        "Alex Cruz",
+        "Jamie Santos",
+        "Chris Lopez",
+        "Jordan Reyes",
+      ];
+      const fallbackDescriptions = [
+        "Full of energy and play.",
+        "Loves long walks and treats.",
+        "The best companion ever.",
+        "Curious and brave.",
+      ];
+
+      // ---------------- LOGIC ----------------
+      const searchBtn = document.querySelector("#searchBtn");
+      const breedInput = document.querySelector("#breedSearchInput");
+      const resultsArea = document.querySelector("#apiResults");
+
+      searchBtn.addEventListener("click", () => {
+        const breedNameRaw = breedInput.value.trim().toLowerCase();
+        if (!breedNameRaw) return;
+
+        const apiBreed = breedAPIMap[breedNameRaw] || breedNameRaw;
+        resultsArea.innerHTML =
+          "<p style='grid-column:1/-1;'>Fetching your pack...</p>";
+
+        fetch(`https://dog.ceo/api/breed/${apiBreed}/images/random/3`)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "error") {
+              resultsArea.innerHTML =
+                "<p style='color:red; grid-column:1/-1;'>Breed not found. Try 'Pug' or 'Husky'!</p>";
+              return;
+            }
+            resultsArea.innerHTML = "";
+            const profiles = dogProfiles[breedNameRaw] || [];
+
+            data.message.forEach((imgUrl, index) => {
+              const dog = profiles[index] || {
+                name: fallbackNames[
+                  Math.floor(Math.random() * fallbackNames.length)
+                ],
+                age: Math.floor(Math.random() * 8) + 1,
+                owner:
+                  fallbackOwners[
+                    Math.floor(Math.random() * fallbackOwners.length)
+                  ],
+                description:
+                  fallbackDescriptions[
+                    Math.floor(Math.random() * fallbackDescriptions.length)
+                  ],
+              };
+
+              const uniqueBtnId = `btn-${index}-${Date.now()}`;
+
+              resultsArea.innerHTML += `
+                <div class="api-card">
+                  <img src="${imgUrl}">
+                  <div class="api-card-info">
+                    <h3>${dog.name}</h3>
+                    <p><strong>Breed:</strong> ${breedNameRaw}</p>
+                    <p><strong>Age:</strong> ${dog.age} years</p>
+                    <p><strong>Owner:</strong> ${dog.owner}</p>
+                    <p><em>"${dog.description}"</em></p>
+                    <button id="${uniqueBtnId}" class="btn-main" style="width:100%; margin-top:15px; background:var(--primary); color:black;" 
+                      onclick="saveDog('${dog.name}', '${imgUrl}', '${dog.age}', '${dog.owner}', '${dog.description}', '${breedNameRaw}', '${uniqueBtnId}')">
+                      SAVE TO PACK
+                    </button>
+                  </div>
+                </div>
+              `;
+            });
+          })
+          .catch(
+            () =>
+              (resultsArea.innerHTML =
+                "<p style='color:red; grid-column:1/-1;'>API Connection Error.</p>"),
+          );
+      });
+
+      // SAVE FUNCTION
+      function saveDog(name, image, age, owner, description, breed, btnId) {
+        let savedDogs = JSON.parse(localStorage.getItem("savedDogs")) || [];
+
+        if (!savedDogs.some((dog) => dog.image === image)) {
+          savedDogs.push({ name, image, age, owner, description, breed });
+          localStorage.setItem("savedDogs", JSON.stringify(savedDogs));
+          alert(`${name} has been added to your pack! 🐾`);
+        } else {
+          alert("This pup is already in your pack!");
+        }
+
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          btn.innerHTML = "SEE FAVORITES →";
+          btn.style.background = "#1a1a1a";
+          btn.style.color = "#f1c40f";
+
+          btn.onclick = function () {
+            window.location.href = "saved.html";
+          };
+        }
+      }
+    </script>
   </body>
 </html>
